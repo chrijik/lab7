@@ -1,0 +1,293 @@
+/* ===== Палитра ===== */
+:root {
+  --olive-petal:   #A3A380;
+  --golden-clover: #D7CE93;
+  --artic-daisy:   #EFEBCE;
+  --rose-blush:    #D8A48F;
+  --peach-blossom: #BB8588;
+
+  --text:          #3a3a22;   /* темно-оливковый для текста */
+  --text-soft:     #5c5c3e;
+  --accent-dark:   #6b3a40;   /* темно-розовый для заголовков и ссылок */
+  --panel-bg:      rgba(239, 235, 206, 0.88);
+
+  --font-head: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  --font-body: "Jost", "Segoe UI", Arial, sans-serif;
+}
+
+/* ===== Базовые стили ===== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  color: var(--text);
+  background-color: var(--artic-daisy);
+  min-height: 100vh;
+}
+
+/* ===== Фон из цветов палитры: крупные «лепестки» ===== */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(circle at 8%  12%, var(--rose-blush)    0 17vmax, transparent calc(17vmax + 1px)),
+    radial-gradient(circle at 96% 20%, var(--golden-clover) 0 20vmax, transparent calc(20vmax + 1px)),
+    radial-gradient(circle at 80% 90%, var(--peach-blossom) 0 22vmax, transparent calc(22vmax + 1px)),
+    radial-gradient(circle at 2%  88%, var(--olive-petal)   0 19vmax, transparent calc(19vmax + 1px)),
+    radial-gradient(circle at 50% 50%, #f3efd6 0 30vmax, transparent calc(30vmax + 1px)),
+    var(--artic-daisy);
+}
+
+h1, h2, h3 {
+  font-family: var(--font-head);
+  color: var(--accent-dark);
+  line-height: 1.15;
+  margin: 0 0 0.6em;
+}
+
+a {
+  color: var(--accent-dark);
+  text-underline-offset: 3px;
+}
+
+a:focus-visible,
+.button:focus-visible {
+  outline: 3px solid var(--text);
+  outline-offset: 3px;
+}
+
+/* ===== Шапка ===== */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.9rem clamp(1rem, 5vw, 3rem);
+  background: var(--olive-petal);
+  border-bottom: 3px solid var(--golden-clover);
+}
+
+.logo {
+  font-family: var(--font-head);
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.site-header ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.6rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.site-header nav a {
+  color: var(--text);
+  font-weight: 500;
+  text-decoration: none;
+  padding: 0.2rem 0;
+  border-bottom: 2px solid transparent;
+}
+
+.site-header nav a:hover {
+  border-bottom-color: var(--artic-daisy);
+}
+
+/* ===== Общая сетка ===== */
+main {
+  width: min(100% - 2rem, 62rem);
+  margin-inline: auto;
+}
+
+.block {
+  padding-block: 2.5rem;
+}
+
+.block h2 {
+  font-size: clamp(2rem, 4vw, 2.6rem);
+  background: var(--artic-daisy);
+  display: inline-block;
+  padding: 0.1em 0.5em;
+  border-radius: 0.5rem;
+  border-left: 8px solid var(--peach-blossom);
+}
+
+/* ===== Первый экран ===== */
+.hero {
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  padding-block: 3rem;
+}
+
+.hero-text {
+  max-width: 36rem;
+  padding: clamp(1.5rem, 4vw, 2.5rem);
+  background: var(--panel-bg);
+  border-radius: 1.5rem;
+  border: 2px solid var(--olive-petal);
+}
+
+.hero-lead {
+  margin: 0 0 0.5rem;
+  color: var(--text-soft);
+}
+
+.hero h1 {
+  font-size: clamp(3rem, 9vw, 5.5rem);
+  font-weight: 700;
+}
+
+.hero-sub {
+  font-size: 1.2rem;
+  margin: 0 0 1.6rem;
+}
+
+.button {
+  display: inline-block;
+  padding: 0.8rem 1.6rem;
+  background: var(--accent-dark);
+  color: var(--artic-daisy);
+  font-weight: 500;
+  text-decoration: none;
+  border-radius: 999px;
+  transition: background 0.2s;
+}
+
+.button:hover {
+  background: var(--text);
+}
+
+/* ===== Панели с текстом ===== */
+.panel {
+  max-width: 44rem;
+  padding: clamp(1.2rem, 3vw, 2rem);
+  background: var(--panel-bg);
+  border-radius: 1rem;
+  border: 2px solid var(--golden-clover);
+}
+
+.panel p {
+  margin: 0 0 1em;
+}
+
+.panel p:last-child {
+  margin-bottom: 0;
+}
+
+/* ===== Навыки ===== */
+.skills {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  gap: 1.2rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.skill {
+  padding: 1.3rem 1.4rem;
+  border-radius: 1rem;
+  color: var(--text);
+}
+
+.skill h3 {
+  font-size: 1.6rem;
+  color: inherit;
+  margin-bottom: 0.3em;
+}
+
+.skill p {
+  margin: 0;
+}
+
+.skill-olive   { background: var(--olive-petal); }
+.skill-golden  { background: var(--golden-clover); }
+.skill-rose    { background: var(--rose-blush); }
+.skill-blossom { background: var(--peach-blossom); color: #2f1a1d; }
+.skill-daisy   { background: var(--artic-daisy); border: 2px solid var(--olive-petal); }
+
+/* ===== Проекты ===== */
+.projects {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  gap: 1.2rem;
+}
+
+.project {
+  padding: 1.4rem;
+  background: var(--panel-bg);
+  border-radius: 1rem;
+  border-top: 8px solid var(--rose-blush);
+}
+
+.project:nth-child(2) { border-top-color: var(--olive-petal); }
+.project:nth-child(3) { border-top-color: var(--golden-clover); }
+
+.project h3 {
+  font-size: 1.55rem;
+}
+
+.project p {
+  margin: 0;
+}
+
+/* ===== Контакты ===== */
+.contacts a {
+  font-weight: 500;
+}
+
+/* ===== Подвал ===== */
+.site-footer {
+  margin-top: 2rem;
+  padding: 1.2rem 1rem;
+  text-align: center;
+  background: var(--peach-blossom);
+  color: #2f1a1d;
+}
+
+.site-footer p {
+  margin: 0;
+}
+
+/* ===== Адаптивность ===== */
+@media (max-width: 600px) {
+  .site-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .hero {
+    min-height: auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .button {
+    transition: none;
+  }
+}
